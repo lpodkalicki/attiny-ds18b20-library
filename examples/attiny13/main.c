@@ -16,7 +16,7 @@
 int
 main(void)
 {
-	uint16_t t;
+	int16_t t;
 
 	/* setup */
 	DS18B20_init(DS18B20_PIN);
@@ -28,3 +28,4 @@ main(void)
 		_delay_ms(1000);
 	}
 }
+

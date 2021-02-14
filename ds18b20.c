@@ -14,9 +14,11 @@ DS18B20_init(uint8_t pin)
 	onewire_init(pin);
 }
 
-uint16_t
+int16_t
 DS18B20_read(void)
 {
+	uint8_t msb, lsb;
+	int8_t sign = 1;
 	uint16_t t;
 
 	onewire_reset();
@@ -27,8 +29,15 @@ DS18B20_read(void)
 	onewire_write(ONEWIRE_SKIP_ROM);
 	onewire_write(DS18B20_READ);
 
-      	t = onewire_read();
-      	t |= (uint16_t)onewire_read() << 8;
+	lsb = onewire_read();
+	msb = onewire_read();
+	t = ((uint16_t)msb << 8) | lsb;
 
-	return ((t >> 4) * 100 + ((t << 12) / 6553) * 10);
+	if ((msb & 0xf8) == 0xf8) {		
+		t = (65536 - t);
+		sign = -1;
+	}
+
+	return sign * (((uint16_t)t * 100U) / 16U);
 }
+

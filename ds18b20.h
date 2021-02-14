@@ -22,6 +22,6 @@ void DS18B20_init(uint8_t pin);
  * For example, to get decimal value:
  *  temp = DS18B20_read() / 100;
  */
-uint16_t DS18B20_read(void);
+int16_t DS18B20_read(void);
 
 #endif	/* !_ATTINY_DS18B20_H_ */

@@ -103,12 +103,30 @@ uart_puts(const char *s)
      	while (*s) uart_putc(*(s++));
 }
 
+/**
+ * Print temparature using format "dd.xx st. C".
+ * Function as an argumen takes short integert which represents temperature,
+ * i.e t=-2506 (-25.06 st. C)
+ */
 void
-uart_putt(uint16_t t)
+uart_putt(int16_t t)
 {
-	uint8_t n = t / 100;
-	uart_putu(n);
+	uint16_t x;	
+
+	if (t < 0) {
+		t = -t;
+		uart_putc('-');
+	}
+	
+	x = t / 100U; // decimal value
+	uart_putu(x);
 	uart_putc('.');
-	uart_putu(t - n);
+
+	x = t - (x * 100U); // value after decimal point
+	if (x < 10) {
+		uart_putc('0');
+	}
+
+	uart_putu(x);
 	uart_puts(" st. C\n");
 }

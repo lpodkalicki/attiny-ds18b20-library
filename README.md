@@ -1,5 +1,5 @@
 # DS18B20 Library
-This is tinyAVR (ATtiny13, ATtiny25, ATtiny45, ATtiny85, etc.) library for DS18B20 temperature sensor.
+This is tinyAVR (ATtiny13, ATtiny25, ATtiny45, ATtiny85, etc.) library for DS18B20 temperature sensor. Supports both positive and negative temperature reading.
 
 ## Example Code
 This example demonstrates how to use library and read temperature from DS18B20.
@@ -16,7 +16,7 @@ This example demonstrates how to use library and read temperature from DS18B20.
 int
 main(void)
 {
-	uint16_t t;
+	int16_t t;
 
 	/* setup */	
 	DS18B20_init(DS18B20_PIN);
