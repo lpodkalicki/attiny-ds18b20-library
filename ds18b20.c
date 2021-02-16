@@ -38,6 +38,5 @@ DS18B20_read(void)
 		sign = -1;
 	}
 
-	return sign * (((uint16_t)t * 100U) / 16U);
+	return sign * (((uint16_t)t * 10U) / 16U);
 }
-
