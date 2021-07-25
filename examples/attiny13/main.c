@@ -18,12 +18,8 @@ main(void)
 {
 	int16_t t;
 
-	/* setup */
-	DS18B20_init(DS18B20_PIN);
-
-	/* loop */
 	while (1) {
-		t = DS18B20_read();
+		t = DS18B20_read(DS18B20_PIN);
 		uart_putt(t);
 		_delay_ms(1000);
 	}

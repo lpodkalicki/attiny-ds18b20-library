@@ -12,16 +12,11 @@
 #define	DS18B20_CONVERT_T	0x44
 #define	DS18B20_READ		0xBE
 
-/* Initialization.
- * pin: GPIO pin of PORTB
- */
-void DS18B20_init(uint8_t pin);
-
 /* Read temperature (Celcius).
  * Returns real number rounded to two decimal places as integer.
  * For example, to get decimal value:
  *  temp = DS18B20_read() / 100;
  */
-int16_t DS18B20_read(void);
+int16_t DS18B20_read(uint8_t pin);
 
 #endif	/* !_ATTINY_DS18B20_H_ */
